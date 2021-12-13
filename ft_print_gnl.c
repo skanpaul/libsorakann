@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 #include "libsorakann.h"
 /* ************************************************************************** */
-void ft_printmem(void *ptr, size_t size)
+/* ATTENTION:
+La chaine de caractère doit se terminer par '\n' ou le code hexa 0x0A
+au lieu du '\0' présent dans un string conventionnel. */
+/* ************************************************************************** */
+void ft_print_getnextline(void *ptr)
 {
-    size_t i;
-    unsigned char *byte;
-    //unsigned int address;
+    size_t          i;
+    size_t          size;
+    unsigned char   *byte;
 
     byte = (unsigned char *)ptr;
     /* ------------------------------------------- */
-    
-    // address = byte & 0x0FF;
-    printf("\nMEMORY FROM %p\n", byte);
-    // i = 0;
-    // printf("MEM ADDR|");
-    // while (i < size)
-    // {
-    //     printf("%02x|", address + (unsigned int)i);
-    //     i++;
-    // }
-    printf("\n");
-   
+    size = 0;
+    while (byte[size] != '\n')
+        size++;
     /* ------------------------------------------- */
     i = 0;
-    printf("INDEX i |");
-    while (i < size)
+    while (i <= size)
     {
         printf("%02zu|", i);
         i++;
@@ -32,8 +26,7 @@ void ft_printmem(void *ptr, size_t size)
     printf("\n");
     /* ------------------------------------------- */
     i = 0;
-    printf("HEXA    |");
-    while (i < size)
+    while (i <= size)
     {
         printf("%02x|", byte[i]);
         i++;
@@ -41,8 +34,7 @@ void ft_printmem(void *ptr, size_t size)
     printf("\n");
     /* ------------------------------------------- */
     i = 0;
-    printf("CHAR    |");
-    while (i < size)
+    while (i <= size)
     {
         if (isprint(byte[i]))
             printf(" %c|", byte[i]);
@@ -50,6 +42,5 @@ void ft_printmem(void *ptr, size_t size)
             printf("__|");
         i++;
     }
-    printf("\n");
     printf("\n");
 }
